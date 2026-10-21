@@ -1,0 +1,871 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, viewport-fit=cover"
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600&family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Allura&display=swap"
+    />
+    <meta name="theme-color" content="#111b2b" />
+    <title>For Prossy ♡</title>
+    <style>
+      :root {
+        --night: #101a2a;
+        --night2: #182941;
+        --cream: #f7f0e4;
+        --gold: #d8b77b;
+        --muted: #b7bdc9;
+        --rose: #e6b7ad;
+      }
+      * {
+        box-sizing: border-box;
+      }
+      html {
+        scroll-behavior: smooth;
+        -webkit-text-size-adjust: 100%;
+        text-size-adjust: 100%;
+      }
+      body {
+        margin: 0;
+        background: var(--night);
+        color: var(--cream);
+        font-family: "DM Sans", sans-serif;
+        overflow-x: hidden;
+      }
+      button {
+        font: inherit;
+        cursor: pointer;
+        -webkit-tap-highlight-color: transparent;
+        touch-action: manipulation;
+      }
+      a {
+        color: inherit;
+        text-decoration: none;
+      }
+      #stars {
+        position: fixed;
+        inset: 0;
+        pointer-events: none;
+        z-index: 0;
+        opacity: 0.55;
+      }
+      .site {
+        position: relative;
+        z-index: 1;
+      }
+      nav {
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 24px clamp(20px, 6vw, 76px);
+        font-size: 10px;
+        letter-spacing: 2px;
+        text-transform: uppercase;
+        color: #e6d8bf;
+      }
+      .logo {
+        font-family: "Playfair Display", serif;
+        font-size: 24px;
+        font-style: italic;
+        letter-spacing: 0;
+        color: var(--gold);
+      }
+      .nav-note {
+        opacity: 0.8;
+      }
+      .hero {
+        min-height: 100svh;
+        display: flex;
+        align-items: center;
+        position: relative;
+        overflow: hidden;
+        padding: 100px 7vw 65px;
+        background:
+          linear-gradient(
+            90deg,
+            rgba(11, 19, 32, 0.92),
+            rgba(12, 20, 32, 0.52) 60%,
+            rgba(12, 20, 32, 0.25)
+          ),
+          radial-gradient(ellipse at 78% 25%, #b47e5b66, transparent 35%),
+          linear-gradient(145deg, #27344a, #101a2a 70%);
+      }
+      .hero:after {
+        content: "";
+        position: absolute;
+        width: 70vw;
+        height: 70vw;
+        right: -20vw;
+        bottom: -48vw;
+        border: 1px solid #d8b77b35;
+        border-radius: 50%;
+        box-shadow:
+          0 0 0 55px #d8b77b08,
+          0 0 0 110px #d8b77b06;
+      }
+      .hero-content {
+        max-width: 760px;
+        position: relative;
+        z-index: 2;
+      }
+      .eyebrow {
+        font-size: 10px;
+        letter-spacing: 3px;
+        text-transform: uppercase;
+        color: var(--gold);
+        margin-bottom: 22px;
+      }
+      h1,
+      h2 {
+        font-family: "Playfair Display", serif;
+        font-weight: 400;
+      }
+      h1 {
+        font-size: clamp(64px, 12vw, 140px);
+        line-height: 0.88;
+        letter-spacing: -4px;
+        margin: 0 0 26px;
+      }
+      h1 em {
+        display: block;
+        font-weight: 400;
+        color: var(--gold);
+        padding-left: clamp(20px, 8vw, 110px);
+      }
+      .hero-sub {
+        font-family: "Playfair Display", serif;
+        font-style: italic;
+        font-size: clamp(18px, 2.6vw, 25px);
+        color: #eee1cf;
+        max-width: 480px;
+        line-height: 1.55;
+      }
+      .hero-bottom {
+        display: flex;
+        align-items: center;
+        gap: 20px;
+        margin-top: 42px;
+        flex-wrap: wrap;
+      }
+      .btn {
+        border: 1px solid var(--gold);
+        background: var(--gold);
+        color: #172033;
+        padding: 15px 22px;
+        font-size: 10px;
+        letter-spacing: 2px;
+        text-transform: uppercase;
+        transition: 0.25s;
+      }
+      @media (hover: hover) {
+        .btn:hover {
+          transform: translateY(-3px);
+          background: #f0d5a1;
+        }
+      }
+      .btn:active {
+        transform: scale(0.97);
+        background: #f0d5a1;
+      }
+      .btn.outline {
+        background: transparent;
+        color: var(--cream);
+      }
+      .hint {
+        font-size: 11px;
+        color: var(--muted);
+      }
+      .scroll {
+        position: absolute;
+        right: 6vw;
+        bottom: 36px;
+        writing-mode: vertical-rl;
+        letter-spacing: 3px;
+        text-transform: uppercase;
+        font-size: 9px;
+        color: #c9b995;
+      }
+      section.content {
+        padding: 100px 7vw;
+      }
+      .section-head {
+        max-width: 660px;
+        margin: 0 auto 52px;
+        text-align: center;
+      }
+      .number {
+        font-size: 10px;
+        letter-spacing: 3px;
+        color: var(--gold);
+        text-transform: uppercase;
+      }
+      h2 {
+        font-size: clamp(36px, 6vw, 65px);
+        line-height: 1.05;
+        margin: 16px 0;
+      }
+      .section-head p {
+        color: var(--muted);
+        line-height: 1.8;
+        font-size: 14px;
+      }
+      .paper-section {
+        background: var(--cream);
+        color: #253044;
+        position: relative;
+      }
+      .paper-section .number {
+        color: #947343;
+      }
+      .paper-section .section-head p {
+        color: #626879;
+      }
+      .cards {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 18px;
+        max-width: 1100px;
+        margin: auto;
+      }
+      .quality {
+        border: 1px solid #d6c9b4;
+        padding: 28px 24px;
+        min-height: 230px;
+        background: #fffaf1;
+        transition:
+          transform 0.3s,
+          box-shadow 0.3s;
+      }
+      @media (hover: hover) {
+        .quality:hover {
+          transform: translateY(-7px);
+          box-shadow: 0 15px 35px #18294112;
+        }
+      }
+
+      .quality .symbol {
+        font-size: 26px;
+        color: #a67b44;
+        margin-bottom: 26px;
+      }
+      .quality h3 {
+        font-family: "Playfair Display", serif;
+        font-size: 25px;
+        font-weight: 400;
+        margin: 0 0 12px;
+      }
+      span.fill {
+        background: #f3d98a;
+        padding: 0 3px;
+      }
+      .quality p {
+        font-size: 13px;
+        line-height: 1.8;
+        color: #5c6270;
+        margin: 0;
+      }
+      .note {
+        max-width: 820px;
+        margin: 0 auto;
+        display: grid;
+        grid-template-columns: 0.75fr 1.25fr;
+        border: 1px solid #46516a;
+        background: #142238;
+      }
+      .note-art {
+        min-height: 350px;
+        background:
+          radial-gradient(circle at 55% 45%, #b58c6c55, transparent 30%),
+          linear-gradient(155deg, #34445a, #111b2b);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        position: relative;
+        overflow: hidden;
+      }
+      .moon {
+        width: 150px;
+        height: 150px;
+        filter: drop-shadow(0 0 28px #e8d4ae55);
+      }
+      .note-art:after {
+        content: "✦     ·     ✧      ·     ✦";
+        position: absolute;
+        bottom: 30px;
+        color: #d8b77b;
+        letter-spacing: 8px;
+        font-size: 11px;
+      }
+      .note-copy {
+        padding: clamp(28px, 5vw, 58px);
+      }
+      .note-copy p {
+        font-family: "Playfair Display", serif;
+        font-size: clamp(17px, 2vw, 21px);
+        line-height: 1.9;
+        color: #e5e4e0;
+      }
+      .note-copy .script {
+        font-family: "Allura", cursive;
+        font-size: 42px;
+        color: var(--gold);
+        margin: 18px 0 0;
+      }
+      .reveal-wrap {
+        max-width: 800px;
+        margin: auto;
+        text-align: center;
+        border: 1px solid #4a5262;
+        padding: clamp(28px, 6vw, 64px);
+        background: linear-gradient(145deg, #17253b, #101a2a);
+      }
+      .lock {
+        font-size: 34px;
+        color: var(--gold);
+      }
+      .reveal-wrap h2 {
+        font-size: clamp(34px, 6vw, 58px);
+      }
+      .reveal-wrap > p {
+        color: var(--muted);
+        line-height: 1.8;
+        max-width: 510px;
+        margin: 0 auto 25px;
+      }
+      #secret {
+        display: none;
+        text-align: left;
+        margin: 30px auto 0;
+        max-width: 580px;
+        padding: 28px;
+        border-left: 2px solid var(--gold);
+        background: #ffffff08;
+        line-height: 1.9;
+        color: #f4eadb;
+        animation: rise 0.7s ease both;
+      }
+      #secret .script {
+        font-family: "Allura", cursive;
+        color: var(--gold);
+        font-size: 38px;
+      }
+      .final {
+        background: linear-gradient(180deg, #101a2a, #0c1420);
+        text-align: center;
+        padding: 100px 20px 60px;
+      }
+      .final h2 {
+        font-size: clamp(40px, 8vw, 84px);
+      }
+      .final p {
+        color: var(--muted);
+        max-width: 520px;
+        line-height: 1.9;
+        margin: 0 auto;
+      }
+      .heart {
+        display: inline-block;
+        color: var(--rose);
+        animation: pulse 1.5s infinite;
+      }
+      footer {
+        text-align: center;
+        padding: 25px;
+        color: #798294;
+        font-size: 10px;
+        letter-spacing: 2px;
+        text-transform: uppercase;
+      }
+      .confetti {
+        position: fixed;
+        z-index: 10;
+        pointer-events: none;
+        font-size: 18px;
+        animation: fall 2.7s ease-in forwards;
+      }
+      @keyframes rise {
+        from {
+          opacity: 0;
+          transform: translateY(18px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+      @keyframes pulse {
+        50% {
+          transform: scale(1.2);
+        }
+      }
+      @keyframes fall {
+        to {
+          transform: translateY(115vh) rotate(400deg);
+          opacity: 0;
+        }
+      }
+      @media (max-width: 720px) {
+        .cards {
+          grid-template-columns: 1fr;
+        }
+        .quality {
+          min-height: auto;
+        }
+        .note {
+          grid-template-columns: 1fr;
+        }
+        .note-art {
+          min-height: 200px;
+        }
+        .note-copy {
+          padding: 28px;
+        }
+        .scroll {
+          display: none;
+        }
+        nav {
+          padding: 20px;
+        }
+        .nav-note {
+          font-size: 8px;
+        }
+        section.content {
+          padding: 76px 6vw;
+        }
+        .hero {
+          padding-left: 7vw;
+        }
+        .hero:after {
+          width: 100vw;
+          height: 100vw;
+          right: -55vw;
+          bottom: -45vw;
+        }
+        h1 {
+          letter-spacing: -2px;
+        }
+      }
+      @media (max-width: 720px) {
+        :root {
+          --pad: max(6vw, env(safe-area-inset-left));
+        }
+        nav {
+          padding: max(18px, env(safe-area-inset-top))
+            max(20px, env(safe-area-inset-right)) 0
+            max(20px, env(safe-area-inset-left));
+        }
+        .nav-note {
+          font-size: 9px;
+          letter-spacing: 1.5px;
+        }
+        .hero {
+          min-height: 100svh;
+          min-height: 100dvh;
+          align-items: flex-end;
+          padding: 110px max(7vw, env(safe-area-inset-right))
+            max(48px, calc(env(safe-area-inset-bottom) + 32px))
+            max(7vw, env(safe-area-inset-left));
+          background:
+            linear-gradient(
+              180deg,
+              rgba(11, 19, 32, 0.35),
+              rgba(11, 19, 32, 0.9) 75%
+            ),
+            radial-gradient(ellipse at 70% 15%, #b47e5b66, transparent 45%),
+            linear-gradient(145deg, #27344a, #101a2a 70%);
+        }
+        .eyebrow {
+          font-size: 10px;
+          letter-spacing: 2.5px;
+          margin-bottom: 16px;
+        }
+        h1 {
+          font-size: clamp(46px, 15.5vw, 72px);
+          line-height: 0.95;
+          letter-spacing: -1.5px;
+          margin-bottom: 20px;
+        }
+        h1 em {
+          padding-left: 12vw;
+        }
+        .hero-sub {
+          font-size: 18px;
+          line-height: 1.5;
+        }
+        .hero-bottom {
+          flex-direction: column;
+          align-items: stretch;
+          gap: 14px;
+          margin-top: 30px;
+        }
+        .btn {
+          min-height: 50px;
+          font-size: 11px;
+          padding: 16px 22px;
+          text-align: center;
+        }
+        .hint {
+          font-size: 12px;
+          text-align: center;
+        }
+        section.content {
+          padding: 64px max(6vw, env(safe-area-inset-right)) 64px
+            max(6vw, env(safe-area-inset-left));
+        }
+        .section-head {
+          margin-bottom: 34px;
+        }
+        h2 {
+          font-size: clamp(32px, 10vw, 46px);
+        }
+        .section-head p {
+          font-size: 15px;
+        }
+        .cards {
+          gap: 14px;
+        }
+        .quality {
+          padding: 24px 20px;
+        }
+        .quality .symbol {
+          margin-bottom: 14px;
+        }
+        .quality h3 {
+          font-size: 23px;
+        }
+        .quality p {
+          font-size: 15px;
+          line-height: 1.7;
+        }
+        .note-art {
+          min-height: 170px;
+        }
+        .moon {
+          width: 110px;
+          height: 110px;
+        }
+        .note-copy p {
+          font-size: 17px;
+          line-height: 1.75;
+        }
+        .note-copy .script {
+          font-size: 36px;
+        }
+        .reveal-wrap {
+          padding: 36px 20px;
+        }
+        #secret {
+          padding: 20px 18px;
+          font-size: 15.5px;
+          line-height: 1.75;
+        }
+        #secret .script {
+          font-size: 34px;
+        }
+        .final {
+          padding: 72px 20px max(40px, env(safe-area-inset-bottom));
+        }
+        .final h2 {
+          font-size: clamp(38px, 12vw, 60px);
+        }
+        .final p {
+          font-size: 15px;
+        }
+        .final .btn {
+          width: 100%;
+          max-width: 340px;
+        }
+        footer {
+          padding: 22px 20px max(25px, env(safe-area-inset-bottom));
+          line-height: 1.8;
+        }
+      }
+      @media (max-width: 360px) {
+        h1 {
+          font-size: 44px;
+        }
+        .nav-note {
+          display: none;
+        }
+      }
+      @media (prefers-reduced-motion: reduce) {
+        *,
+        *:before,
+        *:after {
+          scroll-behavior: auto !important;
+          animation: none !important;
+          transition: none !important;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <canvas id="stars"></canvas>
+    <div class="site">
+      <nav>
+        <a href="#" class="logo">P.</a
+        ><span class="nav-note">A little birthday surprise · 21.10</span>
+      </nav>
+      <header class="hero" id="home">
+        <div class="hero-content">
+          <div class="eyebrow">For someone worth celebrating</div>
+          <h1>Happy birthday,<em>Prossy.</em></h1>
+          <div class="hero-sub">
+            Some people make an ordinary day feel a little more special. Today,
+            we celebrate one of them.
+          </div>
+          <div class="hero-bottom">
+            <button
+              class="btn"
+              onclick="
+                document
+                  .getElementById('about')
+                  .scrollIntoView({ behavior: 'smooth' })
+              "
+            >
+              Come a little closer <span>↗</span></button
+            ><span class="hint"
+              >Made just for you, with a little extra thought ♡</span
+            >
+          </div>
+        </div>
+        <div class="scroll">Scroll to discover ↓</div>
+      </header>
+
+      <section class="content paper-section" id="about">
+        <div class="section-head">
+          <div class="number">01 — A little appreciation</div>
+          <h2>It's more than just<br />your birthday.</h2>
+          <p>
+            It's a chance to celebrate the person you are, not just the day you
+            arrived.
+          </p>
+        </div>
+        <div class="cards">
+          <article class="quality">
+            <div class="symbol">✧</div>
+            <h3>Your energy</h3>
+            <p>
+              You once threatened to bewitch me so I'd want only you.
+              Nobody else can make a threat sound that funny and that flattering
+              at the same time.
+            </p>
+          </article>
+          <article class="quality">
+            <div class="symbol">♡</div>
+            <h3>Your heart</h3>
+            <p>
+              I hope life gives back to you the warmth, joy, and kindness you
+              bring into the lives around you.
+            </p>
+          </article>
+          <article class="quality">
+            <div class="symbol">☾</div>
+            <h3>Your next chapter</h3>
+            <p>
+              May it bring you peaceful days, beautiful surprises, big wins, and
+              reasons to be proud of everything you're building.
+            </p>
+          </article>
+        </div>
+      </section>
+
+      <section class="content" id="for-you">
+        <div class="section-head">
+          <div class="number">02 — A note for you</div>
+          <h2>Something made<br />just for you.</h2>
+          <p>Today deserved more than a text.</p>
+        </div>
+        <div class="note">
+          <div class="note-art">
+            <svg class="moon" viewBox="0 0 100 100" aria-hidden="true">
+              <defs>
+                <linearGradient id="mg" x1="0" y1="0" x2="1" y2="1">
+                  <stop offset="0" stop-color="#e8d4ae" />
+                  <stop offset="1" stop-color="#a58b68" />
+                </linearGradient>
+                <mask id="mm">
+                  <rect width="100" height="100" fill="#fff" />
+                  <circle cx="66" cy="40" r="34" fill="#000" />
+                </mask>
+              </defs>
+              <circle cx="48" cy="52" r="38" fill="url(#mg)" mask="url(#mm)" />
+            </svg>
+          </div>
+          <div class="note-copy">
+            <div class="number">A birthday thought</div>
+            <p>
+              May this next trip around the sun be gentle with your heart and
+              generous with your dreams. May you find yourself surrounded by
+              people who see your worth, celebrate your wins, and make you laugh
+              until you forget what you were worried about.
+            </p>
+            <p>
+              And may there be just enough unexpected sweetness to make you
+              smile at your phone today. Consider this one of those moments. 😊
+            </p>
+            <div class="script">With a little extra warmth, ♡</div>
+          </div>
+        </div>
+      </section>
+
+      <section class="content paper-section" id="message">
+        <div
+          class="reveal-wrap"
+          style="background: #fffaf1; color: #253044; border-color: #d6c9b4"
+        >
+          <div class="lock">✦ ♡ ✦</div>
+          <div class="number">03 — One last thing</div>
+          <h2>There's a message<br />with your name on it.</h2>
+          <p style="color: #626879">
+            A little birthday wish, sealed until you decide to open it.
+          </p>
+          <button class="btn" id="revealBtn" onclick="revealMessage()">
+            Open your note ♡
+          </button>
+          <div id="secret">
+            <p><strong>Happy birthday, Prossy! 🥳❤️</strong></p>
+            <p>
+              I hope today reminds you how special you are. I hope this new year
+              brings you laughter that comes easily, opportunities that excite
+              you, peace that stays, and people who make life feel lighter.
+            </p>
+            <!-- Softer option if things are still early: "And I hope I get to see you smile a lot this year." -->
+            <p>
+              And selfishly, I hope I get to be one of the reasons you smile a
+              little more this year. 😉
+            </p>
+            <p>
+              And about that hut: no sacrifice needed. 😂 You already make me
+              laugh more than almost anyone.
+            </p>
+            <p>
+              Keep being your beautiful, unforgettable self. Enjoy every bit of
+              your day — you deserve to feel celebrated, today and beyond.
+            </p>
+            <div class="script">Happy birthday, birthday girl. ♡</div>
+            <p style="margin-top: 22px; font-size: 14px; color: #c9b995">
+              P.S. Read your books. After exams, I'm collecting on that "let me
+              first be sure." 😉
+            </p>
+          </div>
+        </div>
+      </section>
+      <section class="final">
+        <div class="eyebrow">End of note · Beginning of a new year</div>
+        <h2>
+          Keep shining,<br /><span
+            style="color: var(--gold); font-style: italic"
+            >Prossy.</span
+          >
+          <span class="heart">♥</span>
+        </h2>
+        <p>
+          Here's to more memories, more laughter, more great sex and a year that surprises you
+          in all the best ways.
+        </p>
+        <p
+          style="
+            margin-top: 25px;
+            font-family: &quot;Allura&quot;, cursive;
+            font-size: 38px;
+            color: var(--gold);
+          "
+        >
+          — Papi TJ ❤️
+        </p>
+        <button
+          class="btn outline"
+          style="margin-top: 20px"
+          onclick="celebrate()"
+        >
+          One more birthday wish ✨
+        </button>
+      </section>
+      <footer>Thoughtfully made for Prossy · Birthday edition</footer>
+    </div>
+    <script>
+      const canvas = document.getElementById("stars"),
+        ctx = canvas.getContext("2d");
+      let stars = [];
+      function resize() {
+        canvas.width = innerWidth * devicePixelRatio;
+        canvas.height = innerHeight * devicePixelRatio;
+        canvas.style.width = innerWidth + "px";
+        canvas.style.height = innerHeight + "px";
+        ctx.setTransform(devicePixelRatio, 0, 0, devicePixelRatio, 0, 0);
+        stars = Array.from(
+          {
+            length: Math.min(
+              innerWidth < 720 ? 60 : 130,
+              Math.floor(innerWidth / 7),
+            ),
+          },
+          () => ({
+            x: Math.random() * innerWidth,
+            y: Math.random() * innerHeight,
+            r: Math.random() * 1.4 + 0.2,
+            a: Math.random() * 0.6 + 0.15,
+            p: Math.random() * 6.28,
+          }),
+        );
+      }
+      function draw(t) {
+        ctx.clearRect(0, 0, innerWidth, innerHeight);
+        for (const s of stars) {
+          ctx.globalAlpha = s.a * (0.65 + 0.35 * Math.sin(t * 0.001 + s.p));
+          ctx.fillStyle = "#f7e5c4";
+          ctx.beginPath();
+          ctx.arc(s.x, s.y, s.r, 0, Math.PI * 2);
+          ctx.fill();
+        }
+        ctx.globalAlpha = 1;
+        if (!document.hidden) requestAnimationFrame(draw);
+      }
+      document.addEventListener("visibilitychange", () => {
+        if (!document.hidden) requestAnimationFrame(draw);
+      });
+      addEventListener("resize", resize);
+      resize();
+      requestAnimationFrame(draw);
+      function revealMessage() {
+        const s = document.getElementById("secret");
+        s.style.display = "block";
+        document.getElementById("revealBtn").textContent = "Opened with love ♡";
+        document.getElementById("revealBtn").disabled = true;
+        setTimeout(
+          () => s.scrollIntoView({ behavior: "smooth", block: "center" }),
+          80,
+        );
+        celebrate();
+      }
+      function celebrate() {
+        const icons = ["♡", "✦", "✧", "♥", "✨"];
+        for (let i = 0; i < (innerWidth < 720 ? 18 : 28); i++) {
+          const el = document.createElement("span");
+          el.className = "confetti";
+          el.textContent = icons[Math.floor(Math.random() * icons.length)];
+          el.style.left = Math.random() * 100 + "vw";
+          el.style.top = -20 - Math.random() * 100 + "px";
+          el.style.color = ["#d8b77b", "#e6b7ad", "#f7f0e4"][
+            Math.floor(Math.random() * 3)
+          ];
+          el.style.animationDelay = Math.random() * 0.7 + "s";
+          el.style.fontSize = 12 + Math.random() * 18 + "px";
+          document.body.appendChild(el);
+          setTimeout(() => el.remove(), 3500);
+        }
+      }
+    </script>
+  </body>
+</html>
